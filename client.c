@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 13:54:43 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/29 14:47:54 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/29 17:10:28 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,21 @@
 #include <signal.h>
 #include <string.h>
 
-char decimal_to_binary(int c)
+void empty_signal(int empty)
+{
+    (void)empty;
+}
+
+void send_signal(int binary, int pid_id)
+{
+    if(binary == 1)
+        kill(pid_id, SIGUSR1);
+    else if (binary == 0)
+        kill(pid_id, SIGUSR2);
+    usleep(100);
+}
+
+void decimal_to_binary(int c, int pid_id)
 {
     int binary[8] = {0};
     int loop = 7;
@@ -32,20 +46,19 @@ char decimal_to_binary(int c)
     loop = 0;
     while (loop < 8)
     {
-        printf("%d\n", binary[loop]);
+        send_signal(binary[loop], pid_id);
         loop++;
     }
 }
 
 int main (int argc, char *argv[])
 {
-    //int pid_id = atoi(argv[1]);
     int i = 0;
-    char temp;
+    int pid_id = atoi(argv[1]);
+    signal(SIGUSR1, empty_signal);
     while(argv[2][i])
     {
-        temp = decimal_to_binary(argv[2][i]);
+        decimal_to_binary(argv[2][i], pid_id);
         i++;
     }
-    //kill(pid_id, SIGUSR1);
 }
