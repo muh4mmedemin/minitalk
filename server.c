@@ -10,8 +10,6 @@
     /*                                                                            */
     /* ************************************************************************** */
 
-
-    #define _POSIX_C_SOURCE 200809L
     #define _XOPEN_SOURCE 700
 
     #include <signal.h>
@@ -21,11 +19,11 @@
     #include <stdlib.h>
     #include <string.h>
 
-    char str = '\0';
     int bit = 0;
 
     void signal_test(int signum, siginfo_t *info, void *context)
     {
+        static char str;
         bit++;
         str = str << 1;
         if (SIGUSR1 == signum)
@@ -35,10 +33,10 @@
         if(bit == 8)
         {
             write(1, &str, 1);
+            kill(info->si_pid, SIGUSR1);
             bit = 0;
             str = '\0';
         }
-        kill(info->si_pid, SIGUSR1);
     }
 
     int main ()
