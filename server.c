@@ -26,18 +26,18 @@
             write(1, &str, 1);
             str = '\0';
             bit = 0;
-            kill(info->si_pid, SIGUSR1);
         }
+        kill(info->si_pid, SIGUSR1);
     }
 
     int main ()
     {
         int test = getpid();
         struct sigaction s_sigaction;
-        bit = 0;  
+        bit = 0;
+        sigemptyset(&s_sigaction.sa_mask);
         s_sigaction.sa_sigaction = signal_test;
         s_sigaction.sa_flags = SA_SIGINFO;
-        sigemptyset(&s_sigaction.sa_mask);
         sigaction(SIGUSR1, &s_sigaction, NULL);
         sigaction(SIGUSR2, &s_sigaction, NULL);
         printf("Server pid : %d\n", test);
