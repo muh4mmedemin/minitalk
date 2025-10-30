@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 23:15:56 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/30 23:40:22 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/30 23:51:04 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	array_all_zero(int binary[])
 	int	i;
 
 	i = 0;
-	while(i < 8)
+	while (i < 8)
 	{
-		binary[i] = 0; 
+		binary[i] = 0;
 		i++;
 	}
 }
