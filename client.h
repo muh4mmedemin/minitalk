@@ -6,12 +6,12 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:00:36 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/30 17:52:56 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/30 23:19:50 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLIENT_H
-#define CLIENT_H
+# define CLIENT_H
 
 #include <stdio.h>
 #include <stdlib.h>
