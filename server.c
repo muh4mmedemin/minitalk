@@ -10,16 +10,7 @@
     /*                                                                            */
     /* ************************************************************************** */
 
-    #define _XOPEN_SOURCE 700
-
-    #include <signal.h>
-    #include <sys/types.h>
-    #include <unistd.h>
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
-
-    int bit = 0;
+    #include "server.h"
 
     void signal_test(int signum, siginfo_t *info, void *context)
     {
@@ -33,9 +24,9 @@
         if(bit == 8)
         {
             write(1, &str, 1);
-            kill(info->si_pid, SIGUSR1);
-            bit = 0;
             str = '\0';
+            bit = 0;
+            kill(info->si_pid, SIGUSR1);
         }
     }
 
@@ -43,13 +34,13 @@
     {
         int test = getpid();
         struct sigaction s_sigaction;
-
+        bit = 0;  
         s_sigaction.sa_sigaction = signal_test;
         s_sigaction.sa_flags = SA_SIGINFO;
         sigemptyset(&s_sigaction.sa_mask);
-        printf("Server pid : %d\n", test);
         sigaction(SIGUSR1, &s_sigaction, NULL);
         sigaction(SIGUSR2, &s_sigaction, NULL);
+        printf("Server pid : %d\n", test);
         while (1)
             pause();
         return 0;
