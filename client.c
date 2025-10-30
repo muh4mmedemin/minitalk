@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 23:15:56 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/30 23:20:45 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/30 23:40:22 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	send_signal(int binary, int pid_id, int *bit2_temp)
 		usleep(100);
 }
 
+void	array_all_zero(int binary[])
+{
+	int	i;
+
+	i = 0;
+	while(i < 8)
+	{
+		binary[i] = 0; 
+		i++;
+	}
+}
+
 void	decimal_to_binary(int c, int pid_id)
 {
 	int	binary[8];
@@ -32,6 +44,7 @@ void	decimal_to_binary(int c, int pid_id)
 	int	temp;
 	int	bit2_temp;
 
+	array_all_zero(binary);
 	loop = 7;
 	temp = c;
 	while (loop >= 0 && temp > 0)
