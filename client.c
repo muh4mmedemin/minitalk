@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 23:15:56 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/31 02:09:55 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/31 17:06:55 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ int	g_bit2;
 
 void	send_signal(int binary, int pid_id, int *bit2_temp)
 {
+	int	check_signal;
+
 	if (binary == 1)
-		kill(pid_id, SIGUSR1);
+		check_signal = kill(pid_id, SIGUSR1);
 	else if (binary == 0)
-		kill(pid_id, SIGUSR2);
+		check_signal = kill(pid_id, SIGUSR2);
+	if (check_signal != 0)
+	{
+		ft_printf("Signal Error\n");
+		exit(1);
+	}
 	while (g_bit2 == *bit2_temp)
 		usleep(100);
 }
@@ -74,8 +81,13 @@ int	main(int argc, char *argv[])
 	unsigned long long	i;
 	int					pid_id;
 
+	if (argc != 3)
+	{
+		ft_printf("Arguments errors\n");
+		exit(1);
+	}
 	i = 0;
-	pid_id = atoi(argv[1]);
+	pid_id = ft_atoi(argv[1]);
 	signal(SIGUSR1, system_resume);
 	while (argv[2][i])
 	{

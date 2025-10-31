@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 02:13:59 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/31 03:20:59 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/31 17:07:03 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(void)
 	s_sigaction.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &s_sigaction, NULL);
 	sigaction(SIGUSR2, &s_sigaction, NULL);
-	printf("Server pid : %d\n", test);
+	ft_printf("Server pid : %d\n", test);
 	while (1)
 		pause();
 	return (0);
