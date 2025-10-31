@@ -6,7 +6,7 @@
 /*   By: muayna <muayna@student.42istanbul.com.t    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 02:13:59 by muayna            #+#    #+#             */
-/*   Updated: 2025/10/31 02:19:40 by muayna           ###   ########.fr       */
+/*   Updated: 2025/10/31 03:20:59 by muayna           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_test(int signum, siginfo_t *info, void *context)
 	{
 		str = str | 1;
 	}
-	if (bit == 8)
+	if (g_bit == 8)
 	{
 		write(1, &str, 1);
 		str = '\0';
